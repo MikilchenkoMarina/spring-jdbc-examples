@@ -1,3 +1,5 @@
+package com.javaStudy.springMvc.controller;
+
 /**
  * Created by mmikilchenko on 01.12.2016.
  */
