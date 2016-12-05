@@ -14,7 +14,7 @@ public class MainController {
 
     /*First method on start application*/
     /*Попадаем сюда на старте приложения (см. параметры аннотации и настройки пути после деплоя) */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "one", method = RequestMethod.GET)
     public ModelAndView main() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userJSP", new User());
@@ -35,7 +35,6 @@ public class MainController {
 
         //записываем в атрибут userJSP (используется на странице *.jsp объект user
         modelAndView.addObject("userJSP", user);
-
         return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
     }
 }
