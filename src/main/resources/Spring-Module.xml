@@ -5,6 +5,6 @@
 
 
     <import resource="database/Spring-Datasource.xml" />
-    <import resource="customer/Spring-Contact.xml" />
+    <import resource="contact/Spring-Contact.xml" />
 
 </beans>

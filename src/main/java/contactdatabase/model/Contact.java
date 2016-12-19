@@ -1,5 +1,7 @@
 package contactdatabase.model;
 
+import java.util.Date;
+
 /**
  * Created by mmikilchenko on 15.12.2016.
  */
@@ -9,15 +11,17 @@ public class Contact {
     public int version;
     public String firstName;
     public String lastName;
-    public String birthDate;
+    public Date birthDate;
 
-/*    public Contact(int id, int version, String firstName, String lastName, String birthDate) {
+    public Contact(){}
+
+    public Contact(int id, int version, String firstName, String lastName/*, String birthDate*/) {
         this.id = id;
         this.version = version;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
-    }*/
+        //this.birthDate = birthDate;
+    }
 
     public int getId() {
         return id;
@@ -51,11 +55,11 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

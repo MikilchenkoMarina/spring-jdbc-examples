@@ -1,27 +1,24 @@
 package contactdatabase.dao.implementation;
 
+import com.mysql.jdbc.JDBC4PreparedStatement;
+import com.mysql.jdbc.PreparedStatement;
 import contactdatabase.dao.ContactDAO;
 import contactdatabase.model.Contact;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by mmikilchenko on 15.12.2016.
  */
 public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements ContactDAO {
 
-    private static final String SQL_SELECT_CONTACT =
-            "select ID,VERSION,FIRST_NAME,LAST_NAME from contact where ID = ?;";
-    private static final String
-            SQL_INSERT_CONTACT =
-            "NSERT INTO contact (ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE) " +
-                    "VALUES(5,1,'Pavel','Pavlov', STR_TO_DATE('2013-02-11', '%Y-%m-%d'));";
 
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
@@ -31,22 +28,32 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void insertContact(Contact contact) {
-        jdbcTemplateObject.update(SQL_INSERT_CONTACT, new Object[]{
-                contact.getId(),
-                contact.getVersion(),
-                contact.getFirstName(),
-                contact.getLastName(),
-                contact.getBirthDate()
-        });
+    public void insertContact(Contact contact) throws SQLException {
 
+        final String SQL_INSERT_CONTACT =
+                "NSERT INTO contact (ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE) " +
+                        "VALUES(:ident,:version,':firstName',':lastName',null /*STR_TO_DATE('2013-02-11', '%Y-%m-%d')*/);";
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("ident", contact.getId());
+        params.put("version", contact.getVersion());
+        params.put("firstName", contact.getFirstName());
+        params.put("lastName", contact.getLastName());
+
+
+
+        getSqlQuery();
+        jdbcTemplateObject.update(SQL_INSERT_CONTACT, params);
 
     }
 
     public Contact getContactById(int id) {
+
+        final String SQL_SELECT_CONTACT = "select ID,VERSION,FIRST_NAME,LAST_NAME from contact where ID = ?;";
+
         Contact contact = jdbcTemplateObject.queryForObject(
                 SQL_SELECT_CONTACT,
-                new RowMapper<Contact>()// --2)  Mapper as inner class that map ResultSert to Object of Class Map - Class Spittter it this example
+                new RowMapper<Contact>()// --2)  Mapper as inner class that map ResultSet to Object of Class Map - Class Contact it this example
                 {
                     public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Contact contact = new Contact();//-- Class Model - Create object
@@ -60,5 +67,15 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
                 },
                 new Object[]{1});
         return contact;
+    }
+
+    private void getSqlQuery() throws SQLException {
+    Connection con = dataSource.getConnection();
+    java.sql.PreparedStatement updateSales = con.prepareStatement("select ID,VERSION,FIRST_NAME,LAST_NAME from contact where ID = ?");
+        updateSales.setObject(1,1);
+      //  ((JDBC4PreparedStatement) updateSales).asSql();
+
+
+
     }
 }
