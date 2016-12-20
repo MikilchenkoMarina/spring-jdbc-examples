@@ -1,14 +1,12 @@
-package contactdatabase.dao.implementation;
+package contactdatabase.dao.services;
 
-import com.mysql.jdbc.JDBC4PreparedStatement;
-import com.mysql.jdbc.PreparedStatement;
-import contactdatabase.dao.ContactDAO;
 import contactdatabase.model.Contact;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -41,8 +39,8 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         params.put("lastName", contact.getLastName());
 
 
+        getSqlQuery(SQL_INSERT_CONTACT, params);
 
-        getSqlQuery();
         jdbcTemplateObject.update(SQL_INSERT_CONTACT, params);
 
     }
@@ -69,13 +67,18 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         return contact;
     }
 
-    private void getSqlQuery() throws SQLException {
-    Connection con = dataSource.getConnection();
-    java.sql.PreparedStatement updateSales = con.prepareStatement("select ID,VERSION,FIRST_NAME,LAST_NAME from contact where ID = ?");
-        updateSales.setObject(1,1);
-      //  ((JDBC4PreparedStatement) updateSales).asSql();
+    private String getSqlQuery(String sql, Map<String, Object> params) throws SQLException {
+        Connection con = dataSource.getConnection();
+        PreparedStatement sqlWithParam
+                = con.prepareStatement(sql);
+        int index = 1;
+        for (String paramKey : params.keySet()) {
+            sqlWithParam.setObject(index, params.get(paramKey));
+            index++;
 
-
-
+        }
+        return sqlWithParam.toString();
     }
+
+
 }

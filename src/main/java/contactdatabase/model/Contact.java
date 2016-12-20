@@ -15,12 +15,12 @@ public class Contact {
 
     public Contact(){}
 
-    public Contact(int id, int version, String firstName, String lastName/*, String birthDate*/) {
+    public Contact(int id, int version, String firstName, String lastName, Date birthDate) {
         this.id = id;
         this.version = version;
         this.firstName = firstName;
         this.lastName = lastName;
-        //this.birthDate = birthDate;
+        this.birthDate = birthDate;
     }
 
     public int getId() {

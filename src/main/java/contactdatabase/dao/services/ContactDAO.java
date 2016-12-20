@@ -1,4 +1,4 @@
-package contactdatabase.dao;
+package contactdatabase.dao.services;
 
 import contactdatabase.model.Contact;
 
