@@ -7,6 +7,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.SQLException;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -17,7 +20,7 @@ public class ApplicationJDBCTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
         ContactDAO contactDAO = (ContactDAO) context.getBean("contactDAO");
 
-        Contact contact = new Contact(7, 1, "Khal", "Drogo",null/*STR_TO_DATE('1989-02-10', '%Y-%m-%d')*/);
+        Contact contact = new Contact(7, 1, "Khal", "Drogo", parseDate("2016-10-20"));
         contactDAO.insertContact(contact);
         // ---
 
@@ -26,13 +29,8 @@ public class ApplicationJDBCTest {
 
     }
 
-    private Date parseDate (String dateString ){
-/*        String str = "1986-04-08 12:30";*/
-        //LocalDate test = null ;
-//LocalDate fromIsoDate = LocalDate.parse("2014-01-20");
-/*
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(str, formatter);*/
-        return  null ;
+    private static LocalDate parseDate(String dateString) {
+        LocalDate fromCustomPattern = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return fromCustomPattern;
     }
 }

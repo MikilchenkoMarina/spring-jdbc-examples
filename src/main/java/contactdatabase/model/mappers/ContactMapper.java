@@ -17,7 +17,7 @@ public class ContactMapper implements RowMapper<Contact> {
                 resultSet.getInt("VERSION"),
                 resultSet.getString("FIRST_NAME"),
                 resultSet.getString("LAST_NAME"),
-                resultSet.getDate("BIRTH_DATE")
+                resultSet.getDate("BIRTH_DATE").toLocalDate()
         );
     }
 }

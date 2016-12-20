@@ -1,14 +1,13 @@
 package contactdatabase.dao.services;
 
+import contactdatabase.dao.helpers.SqlQueryHelper;
 import contactdatabase.model.Contact;
+import contactdatabase.model.mappers.ContactMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,16 +29,17 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
 
         final String SQL_INSERT_CONTACT =
                 "NSERT INTO contact (ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE) " +
-                        "VALUES(:ident,:version,':firstName',':lastName',null /*STR_TO_DATE('2013-02-11', '%Y-%m-%d')*/);";
+                        "VALUES(:ident,:version,':firstName',':lastName',STR_TO_DATE(':birthDate', '%Y-%m-%d'));";
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("ident", contact.getId());
         params.put("version", contact.getVersion());
         params.put("firstName", contact.getFirstName());
         params.put("lastName", contact.getLastName());
+        params.put("birthDate", contact.getBirthDate());
 
-
-        getSqlQuery(SQL_INSERT_CONTACT, params);
+        SqlQueryHelper helper = new SqlQueryHelper();
+        System.out.println(helper.getSqlQueryWithBindParams(dataSource.getConnection(), SQL_INSERT_CONTACT, params));
 
         jdbcTemplateObject.update(SQL_INSERT_CONTACT, params);
 
@@ -50,34 +50,9 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         final String SQL_SELECT_CONTACT = "select ID,VERSION,FIRST_NAME,LAST_NAME from contact where ID = ?;";
 
         Contact contact = jdbcTemplateObject.queryForObject(
-                SQL_SELECT_CONTACT,
-                new RowMapper<Contact>()// --2)  Mapper as inner class that map ResultSet to Object of Class Map - Class Contact it this example
-                {
-                    public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        Contact contact = new Contact();//-- Class Model - Create object
-                        contact.setId(rs.getInt(1));
-                        contact.setVersion(rs.getInt(2));
-                        contact.setFirstName(rs.getString(3));
-                        contact.setLastName(rs.getString(4));
-
-                        return contact;
-                    }
-                },
-                new Object[]{1});
+                SQL_SELECT_CONTACT, new ContactMapper(),
+                new Object[]{id});
         return contact;
-    }
-
-    private String getSqlQuery(String sql, Map<String, Object> params) throws SQLException {
-        Connection con = dataSource.getConnection();
-        PreparedStatement sqlWithParam
-                = con.prepareStatement(sql);
-        int index = 1;
-        for (String paramKey : params.keySet()) {
-            sqlWithParam.setObject(index, params.get(paramKey));
-            index++;
-
-        }
-        return sqlWithParam.toString();
     }
 
 

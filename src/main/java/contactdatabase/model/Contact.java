@@ -1,5 +1,6 @@
 package contactdatabase.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,11 +12,11 @@ public class Contact {
     public int version;
     public String firstName;
     public String lastName;
-    public Date birthDate;
+    public LocalDate birthDate;
 
     public Contact(){}
 
-    public Contact(int id, int version, String firstName, String lastName, Date birthDate) {
+    public Contact(int id, int version, String firstName, String lastName, LocalDate birthDate) {
         this.id = id;
         this.version = version;
         this.firstName = firstName;
@@ -55,11 +56,11 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
