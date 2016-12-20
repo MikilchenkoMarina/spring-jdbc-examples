@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -28,10 +29,11 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
     public void insertContact(Contact contact) throws SQLException {
 
         final String SQL_INSERT_CONTACT =
-                "NSERT INTO contact (ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE) " +
-                        "VALUES(:ident,:version,':firstName',':lastName',STR_TO_DATE(':birthDate', '%Y-%m-%d'));";
+                "INSERT INTO contact (ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE) " +
+                        "VALUES(:ident,:version,:firstName,:lastName,:birthDate);";
 
-        Map<String, Object> params = new HashMap<String, Object>();
+
+        LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
         params.put("ident", contact.getId());
         params.put("version", contact.getVersion());
         params.put("firstName", contact.getFirstName());
@@ -39,9 +41,9 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         params.put("birthDate", contact.getBirthDate());
 
         SqlQueryHelper helper = new SqlQueryHelper();
-        System.out.println(helper.getSqlQueryWithBindParams(dataSource.getConnection(), SQL_INSERT_CONTACT, params));
+        String readyQuery = helper.getSqlQueryWithBindParams(dataSource.getConnection(), SQL_INSERT_CONTACT, params);
 
-        jdbcTemplateObject.update(SQL_INSERT_CONTACT, params);
+        jdbcTemplateObject.execute(readyQuery);
 
     }
 
