@@ -14,7 +14,6 @@ public class Contact {
     public String lastName;
     public LocalDate birthDate;
 
-    public Contact(){}
 
     public Contact(int id, int version, String firstName, String lastName, LocalDate birthDate) {
         this.id = id;
@@ -65,4 +64,14 @@ public class Contact {
     }
 
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", version=" + version +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
 }

@@ -1,13 +1,16 @@
 package contactdatabase.dao.services;
 
+import com.mysql.jdbc.*;
 import contactdatabase.dao.helpers.SqlQueryHelper;
 import contactdatabase.model.Contact;
 import contactdatabase.model.mappers.ContactMapper;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,7 +29,7 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public void insertContact(Contact contact) throws SQLException {
+    public void insertContact(Contact contact) {
 
         final String SQL_INSERT_CONTACT =
                 "INSERT INTO contact (ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE) " +
@@ -41,19 +44,21 @@ public class JdbcContactServiceDao  /*extends JdbcDaoSupport*/ implements Contac
         params.put("birthDate", contact.getBirthDate());
 
         SqlQueryHelper helper = new SqlQueryHelper();
-        String readyQuery = helper.getSqlQueryWithBindParams(dataSource.getConnection(), SQL_INSERT_CONTACT, params);
+        String parametrizedQuery = helper.getSqlQueryWithBindParams(dataSource, SQL_INSERT_CONTACT, params);
 
-        jdbcTemplateObject.execute(readyQuery);
+        jdbcTemplateObject.execute(parametrizedQuery);
 
     }
 
     public Contact getContactById(int id) {
 
-        final String SQL_SELECT_CONTACT = "select ID,VERSION,FIRST_NAME,LAST_NAME from contact where ID = ?;";
+        final String SQL_SELECT_CONTACT = "select ID,VERSION,FIRST_NAME,LAST_NAME,BIRTH_DATE from contact where id = :id";
+        LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
+        params.put("id", id);
+        SqlQueryHelper helper = new SqlQueryHelper();
+        String parametrizedQuery = helper.getSqlQueryWithBindParams(dataSource, SQL_SELECT_CONTACT, params);
 
-        Contact contact = jdbcTemplateObject.queryForObject(
-                SQL_SELECT_CONTACT, new ContactMapper(),
-                new Object[]{id});
+        Contact contact = jdbcTemplateObject.queryForObject(parametrizedQuery, new ContactMapper());
         return contact;
     }
 
