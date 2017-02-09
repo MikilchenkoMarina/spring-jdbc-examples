@@ -1,9 +1,8 @@
 package inspoDataBase.jdbcUsageDataBase.dao;
 
-
-import contactdatabase.dao.helpers.SqlQueryHelper;
 import inspoDataBase.jdbcUsageDataBase.model.User;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
 
 import javax.sql.DataSource;
 import java.util.LinkedHashMap;
@@ -13,12 +12,10 @@ import java.util.LinkedHashMap;
  */
 public class JdbcUserDao implements UserDao {
 
-    private DataSource dataSource;
-    private JdbcTemplate jdbcTemplateObject;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+    public void setJdbcTemplate(DataSource dataSource) {
+        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public void addUser(User user) {
@@ -32,11 +29,10 @@ public class JdbcUserDao implements UserDao {
         params.put("userName", user.getUserName());
         params.put("userPassword", user.getUserPassword());
 
-        SqlQueryHelper helper = new SqlQueryHelper();
+        jdbcTemplate.update(SQL_ADD_USER, params);
+        //SqlQueryHelper helper = new SqlQueryHelper();
+        //String parametrizedQuery = helper.getSqlQueryWithBindParams(dataSource, SQL_ADD_USER, params);
 
-        String parametrizedQuery = helper.getSqlQueryWithBindParams(dataSource, SQL_ADD_USER, params);
-
-        jdbcTemplateObject.execute(parametrizedQuery);
 
     }
 
