@@ -4,6 +4,12 @@ package inspoDataBase.jdbcUsageDataBase.model;
  * Created by mmikilchenko on 09.02.2017.
  */
 public class User {
+    public User(int userId, String userName, String userPassword) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+    }
+
     public int getUserId() {
         return userId;
     }

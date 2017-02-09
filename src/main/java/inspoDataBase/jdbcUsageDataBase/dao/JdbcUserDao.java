@@ -1,6 +1,7 @@
 package inspoDataBase.jdbcUsageDataBase.dao;
 
 
+import contactdatabase.dao.helpers.SqlQueryHelper;
 import inspoDataBase.jdbcUsageDataBase.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -21,8 +22,8 @@ public class JdbcUserDao implements UserDao {
     }
 
     public void addUser(User user) {
-        final String SQL_INSERT_CONTACT =
-                "INSERT INTO contact (USER_ID,USER_NAME,USER_PASSWORD " +
+        final String SQL_ADD_USER =
+                "INSERT INTO USER (USER_ID,USER_NAME,USER_PASSWORD )" +
                         "VALUES(:userId,:userName,:userPassword);";
 
         LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
@@ -30,6 +31,12 @@ public class JdbcUserDao implements UserDao {
         params.put("userId", user.getUserId());
         params.put("userName", user.getUserName());
         params.put("userPassword", user.getUserPassword());
+
+        SqlQueryHelper helper = new SqlQueryHelper();
+
+        String parametrizedQuery = helper.getSqlQueryWithBindParams(dataSource, SQL_ADD_USER, params);
+
+        jdbcTemplateObject.execute(parametrizedQuery);
 
     }
 
