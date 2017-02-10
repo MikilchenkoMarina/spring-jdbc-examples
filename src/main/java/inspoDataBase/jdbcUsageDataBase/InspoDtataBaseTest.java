@@ -8,14 +8,25 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by Andy on 09.02.2017.
  */
-public class Test {
+public class InspoDtataBaseTest {
     public static void main(String[] args) {
 
 
         ApplicationContext context = new ClassPathXmlApplicationContext("InspoMinderDataBaseConfig.xml");
-        UserDao userDao = (UserDao) context.getBean("userDao");
+        UserDao userDao = (UserDao) context.getBean("jdbcUserDao");
 
-        User userMarina = new User(4, "TestMar", "333");
+        // Test Add User
+        User userMarina = new User(5, "TestMar", "333");
         userDao.addUser(userMarina);
+
+        // Test Delete User
+        userDao.deleteUserById(1);
+
+        // Test Select by Id User
+        userDao.getUserById(2);
+
+        // Test Show all users User
+        userDao.showAllUsers();
+
     }
 }

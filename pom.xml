@@ -24,6 +24,14 @@
                     <failOnMissingWebXml>true</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -63,11 +71,23 @@
             <version>${spring-framework-version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-framework-version}</version>
+        </dependency>
+
         <!--JSF (include "jsf-api" and "jsf-impl")-->
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
             <version>2.2.10</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
         </dependency>
 
     </dependencies>

@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Created by mmikilchenko on 19.12.2016.
  */
-public class ApplicationJDBCTest {//Test GIT COMMIT...
+public class ApplicationJDBCTest {//InspoDtataBaseTest GIT COMMIT...
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
         ContactDAO contactDAO = (ContactDAO) context.getBean("contactDAO");
