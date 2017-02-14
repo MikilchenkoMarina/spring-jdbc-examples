@@ -1,11 +1,10 @@
-package inspoDataBase.jdbcUsageDataBase.dao;
+package inspoDataBase.jdbcUsageDataBase.dao2;
 
 import com.sun.istack.internal.Nullable;
 import inspoDataBase.jdbcUsageDataBase.model.Reminder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.test.context.jdbc.Sql;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by mmikilchenko on 09.02.2017.

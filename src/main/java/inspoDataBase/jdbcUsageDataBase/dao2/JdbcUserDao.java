@@ -1,4 +1,4 @@
-package inspoDataBase.jdbcUsageDataBase.dao;
+package inspoDataBase.jdbcUsageDataBase.dao2;
 
 import com.sun.istack.internal.Nullable;
 import inspoDataBase.jdbcUsageDataBase.model.User;

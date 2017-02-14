@@ -1,8 +1,7 @@
-package inspoDataBase.jdbcUsageDataBase.dao;
+package inspoDataBase.jdbcUsageDataBase.dao2;
 
 import inspoDataBase.jdbcUsageDataBase.model.User;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

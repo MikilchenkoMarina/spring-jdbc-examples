@@ -1,7 +1,7 @@
 package inspoDataBase;
 
-import inspoDataBase.jdbcUsageDataBase.dao.ReminderDao;
-import inspoDataBase.jdbcUsageDataBase.dao.UserDao;
+import inspoDataBase.jdbcUsageDataBase.dao2.ReminderDao;
+import inspoDataBase.jdbcUsageDataBase.dao2.UserDao;
 import inspoDataBase.jdbcUsageDataBase.model.Reminder;
 import inspoDataBase.jdbcUsageDataBase.model.User;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Andy on 09.02.2017.
  */
-public class InspoDataBaseAppTest {
+public class InspoDataBaseAppTest2 {
     public static void main(String[] args) {
 
 
