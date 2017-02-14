@@ -4,6 +4,11 @@ package inspoDataBase.jdbcUsageDataBase.model;
  * Created by mmikilchenko on 09.02.2017.
  */
 public class User {
+
+    public int userId;
+    public String userName;
+    public String userPassword;
+
     public User(int userId, String userName, String userPassword) {
         this.userId = userId;
         this.userName = userName;
@@ -33,10 +38,6 @@ public class User {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
-
-    public int userId;
-    public String userName;
-    public String userPassword;
 
     @Override
     public String toString() {

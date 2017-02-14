@@ -4,6 +4,18 @@ package inspoDataBase.jdbcUsageDataBase.model;
  * Created by mmikilchenko on 09.02.2017.
  */
 public class Reminder {
+    public int reminderId;
+    public String reminderText;
+    public int themeId;
+    public int userId;
+
+    public Reminder(int reminderId, String reminderText, int themeId, int userId) {
+        this.reminderId = reminderId;
+        this.reminderText = reminderText;
+        this.themeId = themeId;
+        this.userId = userId;
+    }
+
     public int getReminderId() {
         return reminderId;
     }
@@ -36,10 +48,6 @@ public class Reminder {
         this.userId = userId;
     }
 
-    public int reminderId;
-    public String reminderText;
-    public int themeId;
-    public int userId;
 
     @Override
     public String toString() {
