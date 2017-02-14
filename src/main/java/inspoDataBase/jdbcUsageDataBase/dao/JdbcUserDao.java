@@ -1,7 +1,9 @@
 package inspoDataBase.jdbcUsageDataBase.dao;
 
+import com.sun.istack.internal.Nullable;
 import inspoDataBase.jdbcUsageDataBase.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -42,7 +44,14 @@ public class JdbcUserDao implements UserDao {
                 "SELECT * FROM USER WHERE USER_ID = :userId ;";
         LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
         params.put("userId", id);
-        return jdbcTemplate.queryForObject(SQL_GET_USER_BY_ID, params, this::mapUser);
+
+        try {
+            return jdbcTemplate.queryForObject(SQL_GET_USER_BY_ID, params, this::mapUser);
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println(String.format("User With ID %s is not existed : ", id));
+            return null;
+        }
+
     }
 
     @Override
@@ -54,12 +63,12 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public List<User> showAllUsers() {
+    public List<User> getAllUsers() {
         final String SQL_GET_ALL_USERS_LIST = "SELECT * FROM USER ;";
-        List<User> existedUsersList = jdbcTemplate.query(SQL_GET_ALL_USERS_LIST, this::mapUser);
-        return existedUsersList;
+        return jdbcTemplate.query(SQL_GET_ALL_USERS_LIST, this::mapUser);
     }
 
+    @Nullable
     public User mapUser(ResultSet rs, int row) throws SQLException {
         return new User(
                 rs.getInt("USER_ID"),

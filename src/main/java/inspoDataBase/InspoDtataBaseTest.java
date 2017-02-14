@@ -1,9 +1,11 @@
-package inspoDataBase.jdbcUsageDataBase;
+package inspoDataBase;
 
 import inspoDataBase.jdbcUsageDataBase.dao.UserDao;
 import inspoDataBase.jdbcUsageDataBase.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 /**
  * Created by Andy on 09.02.2017.
@@ -26,7 +28,10 @@ public class InspoDtataBaseTest {
         userDao.getUserById(2);
 
         // Test Show all users User
-        userDao.showAllUsers();
+        List<User> allUsersList = userDao.getAllUsers();
+        for (User user : allUsersList) {
+            System.out.println(user.toString());
+        }
 
     }
 }
