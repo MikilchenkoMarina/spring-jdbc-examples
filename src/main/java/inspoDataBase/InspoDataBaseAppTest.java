@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Andy on 09.02.2017.
  */
-public class InspoDtataBaseTest {
+public class InspoDataBaseAppTest {
     public static void main(String[] args) {
 
 
