@@ -1,6 +1,6 @@
 package inspoDataBase.jdbcUsageDataBase.repos.jdbcDao;
 
-import com.sun.istack.internal.Nullable;
+
 import inspoDataBase.dao.UserDao;
 import inspoDataBase.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +69,7 @@ public class JdbcUserDao implements UserDao {
         return jdbcTemplate.query(SQL_GET_ALL_USERS_LIST, this::mapUser);
     }
 
-    @Nullable
+    //@Nullable
     public User mapUser(ResultSet rs, int row) throws SQLException {
         return new User(
                 rs.getInt("USER_ID"),

@@ -1,6 +1,6 @@
 package inspoDataBase.jdbcUsageDataBase.repos.jdbcDao;
 
-import com.sun.istack.internal.Nullable;
+
 import inspoDataBase.dao.ReminderDao;
 import inspoDataBase.model.Reminder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class JdbcReminderDao implements ReminderDao {
         return jdbcTemplate.queryForObject(SQL_GET_REMINDER_BY_ID, params, this::mapReminder);
     }
 
-    @Nullable
+   // @Nullable
     public Reminder mapReminder(ResultSet rs, int rowNum) throws SQLException {
         return new Reminder(
                 rs.getInt("REMINDER_ID"),
