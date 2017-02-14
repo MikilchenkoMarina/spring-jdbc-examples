@@ -1,7 +1,8 @@
-package inspoDataBase.jdbcUsageDataBase.dao2;
+package inspoDataBase.jdbcUsageDataBase.repos.jdbcDao;
 
 import com.sun.istack.internal.Nullable;
-import inspoDataBase.jdbcUsageDataBase.model.Reminder;
+import inspoDataBase.dao.ReminderDao;
+import inspoDataBase.model.Reminder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;

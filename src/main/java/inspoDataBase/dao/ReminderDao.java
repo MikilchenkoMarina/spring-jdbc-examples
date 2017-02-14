@@ -1,6 +1,6 @@
-package inspoDataBase.jdbcUsageDataBase.dao2;
+package inspoDataBase.dao;
 
-import inspoDataBase.jdbcUsageDataBase.model.Reminder;
+import inspoDataBase.model.Reminder;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class User {
+public class UserWeb {
 
     private String name;
     private String password;

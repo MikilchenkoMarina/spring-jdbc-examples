@@ -1,4 +1,4 @@
-package contactdatabase.dao.helpers;
+package inspoDataBase.helpers;
 
 import com.mysql.jdbc.JDBC4PreparedStatement;
 

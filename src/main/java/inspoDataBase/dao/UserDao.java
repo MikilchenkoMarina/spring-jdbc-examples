@@ -1,6 +1,6 @@
-package inspoDataBase.jdbcUsageDataBase.dao2;
+package inspoDataBase.dao;
 
-import inspoDataBase.jdbcUsageDataBase.model.User;
+import inspoDataBase.model.User;
 
 import java.util.List;
 

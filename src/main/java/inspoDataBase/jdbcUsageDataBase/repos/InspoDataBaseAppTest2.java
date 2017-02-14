@@ -1,9 +1,9 @@
-package inspoDataBase;
+package inspoDataBase.jdbcUsageDataBase.repos;
 
-import inspoDataBase.jdbcUsageDataBase.dao2.ReminderDao;
-import inspoDataBase.jdbcUsageDataBase.dao2.UserDao;
-import inspoDataBase.jdbcUsageDataBase.model.Reminder;
-import inspoDataBase.jdbcUsageDataBase.model.User;
+import inspoDataBase.dao.ReminderDao;
+import inspoDataBase.dao.UserDao;
+import inspoDataBase.model.Reminder;
+import inspoDataBase.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -46,6 +46,7 @@ public class InspoDataBaseAppTest2 {
         Reminder testReminder = new Reminder(1, "Life is good!", 1, 2);
         reminderDao.addReminder(testReminder);
         reminderDao.getReminderById(1);
+
 
 
     }

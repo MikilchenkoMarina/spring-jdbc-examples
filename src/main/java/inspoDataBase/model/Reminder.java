@@ -1,4 +1,4 @@
-package inspoDataBase.jdbcUsageDataBase.model;
+package inspoDataBase.model;
 
 /**
  * Created by mmikilchenko on 09.02.2017.

@@ -1,9 +1,9 @@
 package dataBaseTests;
 
 
-import inspoDataBase.jdbcUsageDataBase.dao2.ReminderDao;
-import inspoDataBase.jdbcUsageDataBase.dao2.UserDao;
-import inspoDataBase.jdbcUsageDataBase.model.User;
+import inspoDataBase.dao.ReminderDao;
+import inspoDataBase.dao.UserDao;
+import inspoDataBase.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
