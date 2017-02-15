@@ -1,6 +1,6 @@
 package inspoDataBase.dao;
 
-import inspoDataBase.model.Reminder;
+import inspoDataBase.entity.ReminderEntity;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import java.util.List;
  * Created by mmikilchenko on 09.02.2017.
  */
 public interface ReminderDao {
-    public void addReminder(Reminder reminder);
-    public Reminder getReminderById(int reminderId);
-    public List<Reminder> showRemindersByUserId(int userId);
-    public List<Reminder> showRemindersByTheme(int themeId);
+    public void addReminder(ReminderEntity reminder);
+    public ReminderEntity getReminderById(int reminderId);
+    public List<ReminderEntity> showRemindersByUserId(int userId);
+    public List<ReminderEntity> showRemindersByTheme(int themeId);
 
 }

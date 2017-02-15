@@ -1,8 +1,8 @@
-package inspoDataBase.jdbcUsageDataBase.repos.jdbcDao;
+package inspoDataBase.jdbcUsageDataBase.jdbcDaoImplementation;
 
 
 import inspoDataBase.dao.ReminderDao;
-import inspoDataBase.model.Reminder;
+import inspoDataBase.entity.ReminderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,7 +27,7 @@ public class JdbcReminderDao implements ReminderDao {
     }
 
     @Override
-    public void addReminder(Reminder reminder) {
+    public void addReminder(ReminderEntity reminder) {
         String SQL_ADD_REMINDER =
                 "INSERT INTO REMINDER (REMINDER_ID,REMINDER_TEXT,THEME_ID,USER_ID ) " +
                         "   VALUES (:reminderId,:reminderText,:themeId,:userId)";
@@ -42,7 +42,7 @@ public class JdbcReminderDao implements ReminderDao {
     }
 
     @Override
-    public Reminder getReminderById(int reminderId) {
+    public ReminderEntity getReminderById(int reminderId) {
         String SQL_GET_REMINDER_BY_ID = "SELECT * FROM REMINDER WHERE REMINDER_ID = :reminderId";
 
         HashMap<String, Object> params = new LinkedHashMap<>();
@@ -51,17 +51,17 @@ public class JdbcReminderDao implements ReminderDao {
     }
 
    // @Nullable
-    public Reminder mapReminder(ResultSet rs, int rowNum) throws SQLException {
-        return new Reminder(
+    public ReminderEntity mapReminder(ResultSet rs, int rowNum) throws SQLException {
+        return new ReminderEntity(
                 rs.getInt("REMINDER_ID"),
                 rs.getString("REMINDER_TEXT"),
-                rs.getInt("THEME_ID"),
+                rs.getString("THEME_ID"),
                 rs.getInt("USER_ID")
         );
     }
 
     @Override
-    public List<Reminder> showRemindersByUserId(int userId) {
+    public List<ReminderEntity> showRemindersByUserId(int userId) {
         String SQL_GET_ALL_USER_REMINDER_BY_USER_ID =
                 "SELECT  * FROM REMINDER WHERE USER_ID =:userId;";
         HashMap<String, Object> param = new HashMap<>();
@@ -70,7 +70,7 @@ public class JdbcReminderDao implements ReminderDao {
     }
 
     @Override
-    public List<Reminder> showRemindersByTheme(int themeId) {
+    public List<ReminderEntity> showRemindersByTheme(int themeId) {
         String SQL_GET_ALL_REMINDER_BY_THEME_ID =
                 "SELECT  * FROM REMINDER WHERE THEME_ID =:userId;";
         HashMap<String, Object> param = new HashMap<>();

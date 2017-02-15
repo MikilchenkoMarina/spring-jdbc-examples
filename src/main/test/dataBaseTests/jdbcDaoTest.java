@@ -3,7 +3,7 @@ package dataBaseTests;
 
 import inspoDataBase.dao.ReminderDao;
 import inspoDataBase.dao.UserDao;
-import inspoDataBase.model.User;
+import inspoDataBase.entity.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class jdbcDaoTest {
 
     @Test
     public void chectAddUserMethod() {
-        User testUser = new User(11, "TestUser", "333");
+        UserEntity testUser = new UserEntity(11, "TestUser", "333");
         userDao.addUser(testUser);
         assertNotNull(userDao.getUserById(11));
     }

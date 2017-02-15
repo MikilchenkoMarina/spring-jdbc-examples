@@ -1,9 +1,9 @@
 package inspoDataBase.hibernateUsageDataBase;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
  import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
@@ -13,6 +13,7 @@ import java.util.Properties;
  * Created by mmikilchenko on 14.02.2017.
  */
 @Configuration
+@ComponentScan
 public class HibernateConfigs {
     @Bean
     public DataSource dataSource() {
@@ -28,14 +29,11 @@ public class HibernateConfigs {
     public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource());
-        sfb.setPackagesToScan(new String[]{"inspoDataBase"});
+        sfb.setPackagesToScan(new String[]{"inspoDataBase.entity"});
         Properties props= new Properties();
         props.setProperty("dialect","org.hibernate.dialect.H2Dialect");
         sfb.setHibernateProperties(props);
         return sfb;
    }
-
-
-
 
 }

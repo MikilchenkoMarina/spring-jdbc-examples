@@ -1,8 +1,8 @@
-package inspoDataBase.jdbcUsageDataBase.repos.jdbcDao;
+package inspoDataBase.jdbcUsageDataBase.jdbcDaoImplementation;
 
 
 import inspoDataBase.dao.UserDao;
-import inspoDataBase.model.User;
+import inspoDataBase.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -27,7 +27,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(UserEntity user) {
         final String SQL_ADD_USER =
                 "INSERT INTO USER (USER_ID,USER_NAME,USER_PASSWORD )" +
                         "VALUES(:userId,:userName,:userPassword);";
@@ -40,7 +40,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
+    public UserEntity getUserById(int id) {
         final String SQL_GET_USER_BY_ID =
                 "SELECT * FROM USER WHERE USER_ID = :userId ;";
         LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
@@ -64,14 +64,14 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         final String SQL_GET_ALL_USERS_LIST = "SELECT * FROM USER ;";
         return jdbcTemplate.query(SQL_GET_ALL_USERS_LIST, this::mapUser);
     }
 
     //@Nullable
-    public User mapUser(ResultSet rs, int row) throws SQLException {
-        return new User(
+    public UserEntity mapUser(ResultSet rs, int row) throws SQLException {
+        return new UserEntity(
                 rs.getInt("USER_ID"),
                 rs.getString("USER_NAME"),
                 rs.getString("USER_PASSWORD")

@@ -1,18 +1,18 @@
-package inspoDataBase.jdbcUsageDataBase.repos;
+package inspoDataBase.jdbcUsageDataBase.app;
 
 import inspoDataBase.dao.ReminderDao;
 import inspoDataBase.dao.UserDao;
-import inspoDataBase.model.Reminder;
-import inspoDataBase.model.User;
+import inspoDataBase.entity.ReminderEntity;
+import inspoDataBase.entity.UserEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
 /**
- * Created by Andy on 09.02.2017.
+ * Created by mmikilchenko on 09.02.2017.
  */
-public class InspoDataBaseAppTest2 {
+public class JdbcDbAppTest {
     public static void main(String[] args) {
 
 
@@ -20,12 +20,12 @@ public class InspoDataBaseAppTest2 {
         UserDao userDao = (UserDao) context.getBean("jdbcUserDao");
 
         // Test Add User
-        User userMarina = new User(100, "11TestMar", "333");
+        UserEntity userMarina = new UserEntity(100, "11TestMar", "333");
         userDao.addUser(userMarina);
 
         // Test Show all users User
-        List<User> allUsersList = userDao.getAllUsers();
-        for (User user : allUsersList) {
+        List<UserEntity> allUsersList = userDao.getAllUsers();
+        for (UserEntity user : allUsersList) {
             System.out.println(user.toString());
         }
 
@@ -36,14 +36,14 @@ public class InspoDataBaseAppTest2 {
         userDao.getUserById(5);
 
         // Test Show all users User
-        List<User> allUsersList2 = userDao.getAllUsers();
-        for (User user : allUsersList2) {
+        List<UserEntity> allUsersList2 = userDao.getAllUsers();
+        for (UserEntity user : allUsersList2) {
             System.out.println(user.toString());
         }
 
         ReminderDao reminderDao = (ReminderDao) context.getBean("jdbcReminderDao");
 
-        Reminder testReminder = new Reminder(1, "Life is good!", 1, 2);
+        ReminderEntity testReminder = new ReminderEntity(1, "Life is good!", "Theme 1", 2);
         reminderDao.addReminder(testReminder);
         reminderDao.getReminderById(1);
 
