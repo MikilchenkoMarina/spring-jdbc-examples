@@ -1,5 +1,6 @@
 package inspoDataBase.hibernateUsageDataBase.hibernateDaoImplementation;
 
+import inspoDataBase.hibernateUsageDataBase.dao.UserDao;
 import inspoDataBase.hibernateUsageDataBase.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by mmikilchenko on 14.02.2017.
  */
 @Repository("hibernateUserDao")
-public class HibernateUserDao /*implements UserDao*/ {
+public class HibernateUserDao implements UserDao {
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -30,8 +31,8 @@ public class HibernateUserDao /*implements UserDao*/ {
         }
     }
 
-   // @Override
-   @Transactional
+    @Override
+    @Transactional
     public void addUser(User user) {
         Session session = currentSession();
         session.beginTransaction();
@@ -39,16 +40,16 @@ public class HibernateUserDao /*implements UserDao*/ {
         session.getTransaction().commit();
     }
 
-    ///@Override
+    @Override
     public User getUserById(int id) {
         return null;
     }
 
-    //@Override
+    @Override
     public void deleteUserById(int id) {
     }
 
-    //@Override
+    @Override
     public List<User> getAllUsers() {
         return null;
     }
