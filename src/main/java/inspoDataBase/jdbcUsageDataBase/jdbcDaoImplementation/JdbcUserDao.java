@@ -2,7 +2,7 @@ package inspoDataBase.jdbcUsageDataBase.jdbcDaoImplementation;
 
 
 import inspoDataBase.dao.UserDao;
-import inspoDataBase.entity.UserEntity;
+import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

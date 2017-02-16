@@ -2,8 +2,8 @@ package inspoDataBase.jdbcUsageDataBase.app;
 
 import inspoDataBase.dao.ReminderDao;
 import inspoDataBase.dao.UserDao;
-import inspoDataBase.entity.ReminderEntity;
-import inspoDataBase.entity.UserEntity;
+import inspoDataBase.jdbcUsageDataBase.entity.ReminderEntity;
+import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,7 +20,7 @@ public class JdbcDbAppTest {
         UserDao userDao = (UserDao) context.getBean("jdbcUserDao");
 
         // Test Add User
-        UserEntity userMarina = new UserEntity(100, "11TestMar", "333");
+        UserEntity userMarina = new UserEntity(987, "11TestMar", "333");
         userDao.addUser(userMarina);
 
         // Test Show all users User
@@ -30,7 +30,7 @@ public class JdbcDbAppTest {
         }
 
         // Test Delete User
-        userDao.deleteUserById(100);
+        userDao.deleteUserById(987);
 
         // Test Select by Id User
         userDao.getUserById(5);
@@ -43,9 +43,9 @@ public class JdbcDbAppTest {
 
         ReminderDao reminderDao = (ReminderDao) context.getBean("jdbcReminderDao");
 
-        ReminderEntity testReminder = new ReminderEntity(1, "Life is good!", "Theme 1", 2);
+        ReminderEntity testReminder = new ReminderEntity(7, "Life is good!", "Theme 1", 2);
         reminderDao.addReminder(testReminder);
-        reminderDao.getReminderById(1);
+        reminderDao.getReminderById(7);
 
 
 
