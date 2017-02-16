@@ -3,7 +3,7 @@ package dataBaseTests;
 
 import inspoDataBase.dao.ReminderDao;
 import inspoDataBase.dao.UserDao;
-import inspoDataBase.entity.UserEntity;
+import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

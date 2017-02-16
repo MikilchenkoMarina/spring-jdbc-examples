@@ -1,7 +1,6 @@
 package inspoDataBase.hibernateUsageDataBase.hibernateDaoImplementation;
 
-import inspoDataBase.dao.UserDao;
-import inspoDataBase.entity.UserEntity;
+import inspoDataBase.hibernateUsageDataBase.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,15 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 
 /**
  * Created by mmikilchenko on 14.02.2017.
  */
 @Repository("hibernateUserDao")
-
-public class HibernateUserDao implements UserDao {
+public class HibernateUserDao /*implements UserDao*/ {
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -33,26 +30,26 @@ public class HibernateUserDao implements UserDao {
         }
     }
 
-    //@Override
-    @Transactional
-    public void addUser(UserEntity user) {
+   // @Override
+   @Transactional
+    public void addUser(User user) {
         Session session = currentSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();
     }
 
-    @Override
-    public UserEntity getUserById(int id) {
+    ///@Override
+    public User getUserById(int id) {
         return null;
     }
 
-    @Override
+    //@Override
     public void deleteUserById(int id) {
     }
 
-    @Override
-    public List<UserEntity> getAllUsers() {
+    //@Override
+    public List<User> getAllUsers() {
         return null;
     }
 }

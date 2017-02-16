@@ -1,6 +1,6 @@
 package inspoDataBase.dao;
 
-import inspoDataBase.entity.ReminderEntity;
+import inspoDataBase.jdbcUsageDataBase.entity.ReminderEntity;
 
 import java.util.List;
 

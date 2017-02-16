@@ -1,6 +1,6 @@
 package inspoDataBase.dao;
 
-import inspoDataBase.entity.UserEntity;
+import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 
 import java.util.List;
 
