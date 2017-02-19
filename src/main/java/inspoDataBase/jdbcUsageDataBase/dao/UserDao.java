@@ -1,4 +1,4 @@
-package inspoDataBase.dao;
+package inspoDataBase.jdbcUsageDataBase.dao;
 
 import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 
