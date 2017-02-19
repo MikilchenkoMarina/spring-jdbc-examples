@@ -1,12 +1,8 @@
 package inspoDataBase.hibernateUsageDataBase.hibernateDaoImplementation;
 
-import inspoDataBase.hibernateUsageDataBase.dao.UserDao;
+import inspoDataBase.hibernateUsageDataBase.dao.ReminderDao;
 import inspoDataBase.hibernateUsageDataBase.entity.Reminder;
-import inspoDataBase.hibernateUsageDataBase.entity.User;
-import org.hibernate.HibernateException;
-import org.hibernate.ObjectNotFoundException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,13 +15,13 @@ import java.util.List;
 /**
  * Created by mmikilchenko on 14.02.2017.
  */
-@Repository("hibernateUserDao")
+@Repository("hibernateReminderDao")
+public class HibernateReminderDao implements ReminderDao {
 
-public class HibernateUserDao implements UserDao {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public HibernateUserDao(SessionFactory sessionFactory) {
+    public HibernateReminderDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -39,43 +35,47 @@ public class HibernateUserDao implements UserDao {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {ObjectNotFoundException.class, ConstraintViolationException.class})
-    public void addUser(User user) {
+    public void addReminder(Reminder reminder) {
         Session session = currentSession();
-        //session.beginTransaction();
-        session.save(user);
-          //session.getTransaction().commit();
+        session.save(reminder);
     }
 
     @Override
-    public User getUserById(int id) {
+    public Reminder getReminderById(int reminderId) {
         Session session = currentSession();
-        return (User) session.get(User.class, id);
+        return (Reminder) session.get(Reminder.class, reminderId);
     }
 
     @Override
-    public boolean deleteUserById(int id) {
-        return deleteById(User.class, id);
-    }
-
-    //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = {ObjectNotFoundException.class, ConstraintViolationException.class})
-    @Override
-    public List<User> getAllUsers() {
+    public List<Reminder> showRemindersByUserId(int userId) {
         Session session = currentSession();
-        //List<User> products  = (List<User>) session.createQuery("from User").list();
-        // session.createQuery("from User").list();
-        //(List<User>)session.createQuery("SELECT  FROM Products").list();
-        return session.createQuery("from User").list();
+        Query query = session.createQuery("from Reminder where user_id = :userId ");
+        query.setParameter("userId", userId);
+        return query.list();
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {/*ObjectNotFoundException.class,*/ ConstraintViolationException.class})
+    @Override
+    public List<Reminder> showRemindersByTheme(int themeId) {
+        return null;
+    }
+
+    @Override
+    public void deleteReminderById(int reminderId) {
+        deleteById(Reminder.class, reminderId);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {ObjectNotFoundException.class, ConstraintViolationException.class})
+    public void updateReminder(Reminder reminder) {
+        currentSession().saveOrUpdate(reminder);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {ObjectNotFoundException.class, ConstraintViolationException.class})
     private boolean deleteById(Class<?> type, Serializable id) {
         Session session = currentSession();
         Object persistentInstance = session.load(type, id);
         if (persistentInstance != null) {
-            // session.beginTransaction();
             session.delete(persistentInstance);
             session.saveOrUpdate(persistentInstance);
-            //  session.getTransaction().commit();
             return true;
         }
         return false;

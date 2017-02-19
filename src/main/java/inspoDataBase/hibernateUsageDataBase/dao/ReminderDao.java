@@ -9,8 +9,15 @@ import java.util.List;
  */
 public interface ReminderDao {
     public void addReminder(Reminder reminder);
+
     public Reminder getReminderById(int reminderId);
+
     public List<Reminder> showRemindersByUserId(int userId);
+
     public List<Reminder> showRemindersByTheme(int themeId);
+
+    public void deleteReminderById(int reminderId);
+
+    public void updateReminder(Reminder reminder);
 
 }
