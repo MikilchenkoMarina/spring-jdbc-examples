@@ -1,7 +1,8 @@
 package inspoDataBase.jdbcUsageDataBase.app;
 
-import inspoDataBase.dao.ReminderDao;
-import inspoDataBase.dao.UserDao;
+
+import inspoDataBase.jdbcUsageDataBase.dao.ReminderDao;
+import inspoDataBase.jdbcUsageDataBase.dao.UserDao;
 import inspoDataBase.jdbcUsageDataBase.entity.ReminderEntity;
 import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 import org.springframework.context.ApplicationContext;

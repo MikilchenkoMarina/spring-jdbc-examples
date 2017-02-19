@@ -1,8 +1,9 @@
 package dataBaseTests;
 
 
-import inspoDataBase.dao.ReminderDao;
-import inspoDataBase.dao.UserDao;
+
+import inspoDataBase.jdbcUsageDataBase.dao.ReminderDao;
+import inspoDataBase.jdbcUsageDataBase.dao.UserDao;
 import inspoDataBase.jdbcUsageDataBase.entity.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;

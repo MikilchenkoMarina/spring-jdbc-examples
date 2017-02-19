@@ -23,7 +23,7 @@ public class User {
     @Column(name = "USER_PASSWORD", nullable = true, length = 45)
     private String userPassword;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @ElementCollection(targetClass = Reminder.class)
     private List<Reminder> reminders;
 
@@ -69,4 +69,13 @@ public class User {
         this.reminders = reminders;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", reminders=" + reminders +
+                '}';
+    }
 }
