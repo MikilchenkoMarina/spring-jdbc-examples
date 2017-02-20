@@ -43,7 +43,7 @@ public class HibernateUserDao implements UserDao {
         Session session = currentSession();
         //session.beginTransaction();
         session.save(user);
-          //session.getTransaction().commit();
+        //session.getTransaction().commit();
     }
 
     @Override
@@ -61,21 +61,17 @@ public class HibernateUserDao implements UserDao {
     @Override
     public List<User> getAllUsers() {
         Session session = currentSession();
-        //List<User> products  = (List<User>) session.createQuery("from User").list();
-        // session.createQuery("from User").list();
-        //(List<User>)session.createQuery("SELECT  FROM Products").list();
         return session.createQuery("from User").list();
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {/*ObjectNotFoundException.class,*/ ConstraintViolationException.class})
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {ObjectNotFoundException.class, ConstraintViolationException.class})
     private boolean deleteById(Class<?> type, Serializable id) {
         Session session = currentSession();
         Object persistentInstance = session.load(type, id);
         if (persistentInstance != null) {
-            // session.beginTransaction();
+
             session.delete(persistentInstance);
             session.saveOrUpdate(persistentInstance);
-            //  session.getTransaction().commit();
             return true;
         }
         return false;
