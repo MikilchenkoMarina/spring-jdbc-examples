@@ -16,7 +16,7 @@ import java.util.List;
 public class StandaloneJdbcDbAppTest {
     public static void main(String[] args) {
 
-
+        // Get Spring Application context from XML configs example
         ApplicationContext context = new ClassPathXmlApplicationContext("InspoMinderDataBaseConfig.xml");
         UserDao userDao = (UserDao) context.getBean("jdbcUserDao");
         ReminderDao reminderDao = (ReminderDao) context.getBean("jdbcReminderDao");
@@ -31,7 +31,6 @@ public class StandaloneJdbcDbAppTest {
 
         // Get Reminder
         System.out.println(reminderDao.getReminderById(7));
-        ;
 
         // Show all users User
         List<UserEntity> allUsersList = userDao.getAllUsers();

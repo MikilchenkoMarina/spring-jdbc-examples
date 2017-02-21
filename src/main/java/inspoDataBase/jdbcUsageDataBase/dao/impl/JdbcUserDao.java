@@ -68,6 +68,7 @@ public class JdbcUserDao implements UserDao {
         return jdbcTemplate.query(SQL_GET_ALL_USERS_LIST, this::mapUser);
     }
 
+
     //@Nullable
     public UserEntity mapUser(ResultSet rs, int row) throws SQLException {
         return new UserEntity(
