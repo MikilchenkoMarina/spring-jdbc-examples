@@ -1,4 +1,4 @@
-package inspoDataBase.jdbcUsageDataBase.jdbcDaoImplementation;
+package inspoDataBase.jdbcUsageDataBase.dao.impl;
 
 
 import inspoDataBase.jdbcUsageDataBase.dao.UserDao;

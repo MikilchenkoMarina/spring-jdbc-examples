@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-    /*First method on start application*/
+    /*First method on addUser application*/
     /*Попадаем сюда на старте приложения (см. параметры аннотации и настройки пути после деплоя) */
     @RequestMapping(value = "one", method = RequestMethod.GET)
     public ModelAndView main() {

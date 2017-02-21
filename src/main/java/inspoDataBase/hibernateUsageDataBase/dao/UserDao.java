@@ -1,6 +1,6 @@
 package inspoDataBase.hibernateUsageDataBase.dao;
 
-import inspoDataBase.hibernateUsageDataBase.entity.User;
+import inspoDataBase.entity.User;
 
 import java.util.List;
 

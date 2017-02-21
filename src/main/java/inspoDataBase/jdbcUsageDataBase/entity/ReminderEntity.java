@@ -50,4 +50,13 @@ public class ReminderEntity {
         this.themeId = themeId;
     }
 
+    @Override
+    public String toString() {
+        return "ReminderEntity{" +
+                "reminderId=" + reminderId +
+                ", reminderText='" + reminderText + '\'' +
+                ", themeId='" + themeId + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 }

@@ -3,9 +3,8 @@ package inspoDataBase.hibernateUsageDataBase.app;
 import inspoDataBase.hibernateUsageDataBase.HibernateConfigs;
 import inspoDataBase.hibernateUsageDataBase.dao.ReminderDao;
 import inspoDataBase.hibernateUsageDataBase.dao.UserDao;
-import inspoDataBase.hibernateUsageDataBase.entity.Reminder;
-import inspoDataBase.hibernateUsageDataBase.entity.User;
-import inspoDataBase.hibernateUsageDataBase.hibernateDaoImplementation.HibernateUserDao;
+import inspoDataBase.entity.Reminder;
+import inspoDataBase.entity.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  * Created by mmikilchenko on 14.02.2017.
  */
-public class HibernateDbAppTest {
+public class StandaloneHibernateDbApp {
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(HibernateConfigs.class);
@@ -24,6 +23,7 @@ public class HibernateDbAppTest {
         ReminderDao reminderDao = (ReminderDao) context.getBean("hibernateReminderDao");
 
         List<Reminder> remList = new ArrayList<>();
+
 
         Reminder reminderOne = new Reminder(1, "As our case is new, we must think and act anew. ", "Abraham Lincoln Quotes", null);
         Reminder reminderTwo = new Reminder(2, "Important principles may, and must, be inflexible. ", "First theme", null);

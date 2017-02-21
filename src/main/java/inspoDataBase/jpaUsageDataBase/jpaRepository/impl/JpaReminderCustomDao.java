@@ -1,7 +1,7 @@
-package inspoDataBase.jpaUsageDataBase.jpaDaoImplementation;
+package inspoDataBase.jpaUsageDataBase.jpaRepository.impl;
 
-import inspoDataBase.jpaUsageDataBase.entity.Reminder;
-import inspoDataBase.jpaUsageDataBase.jpaDao.ReminderDao;
+
+import inspoDataBase.entity.Reminder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,16 +11,15 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by mmikilchenko on 21.02.2017.
  */
-@Repository("jpaReminderDao")
+@Repository("jpaReminderDaoCustom")
 @Transactional
-public class JpaReminderDao implements ReminderDao {
+public class JpaReminderCustomDao/* implements ReminderRepository */{
 
     @PersistenceContext
     private EntityManager em;
 
-    @Override
+    //@Override
     public void addReminder(Reminder reminder) {
-        em.persist(reminder);
-
+         em.persist(reminder);
     }
 }

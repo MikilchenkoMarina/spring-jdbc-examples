@@ -1,8 +1,7 @@
-package inspoDataBase.hibernateUsageDataBase.hibernateDaoImplementation;
+package inspoDataBase.hibernateUsageDataBase.dao.impl;
 
 import inspoDataBase.hibernateUsageDataBase.dao.UserDao;
-import inspoDataBase.hibernateUsageDataBase.entity.Reminder;
-import inspoDataBase.hibernateUsageDataBase.entity.User;
+import inspoDataBase.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;

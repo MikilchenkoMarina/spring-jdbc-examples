@@ -1,4 +1,4 @@
-package dataBaseTests;
+package inspoDataBase.jdbcUsageDataBase.tests;
 
 
 

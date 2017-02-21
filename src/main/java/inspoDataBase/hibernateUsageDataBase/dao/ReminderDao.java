@@ -1,6 +1,6 @@
 package inspoDataBase.hibernateUsageDataBase.dao;
 
-import inspoDataBase.hibernateUsageDataBase.entity.Reminder;
+import inspoDataBase.entity.Reminder;
 
 import java.util.List;
 

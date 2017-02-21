@@ -40,7 +40,7 @@ public class HibernateConfigs {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource());
-        sfb.setPackagesToScan(new String[]{"inspoDataBase.hibernateUsageDataBase.entity"});
+        sfb.setPackagesToScan(new String[]{"inspoDataBase.entity"});
         Properties props = new Properties();
         props.setProperty("dialect", "org.hibernate.dialect.H2Dialect");
         props.setProperty("connection.autocommit", "true");

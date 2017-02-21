@@ -1,7 +1,7 @@
-package inspoDataBase.hibernateUsageDataBase.hibernateDaoImplementation;
+package inspoDataBase.hibernateUsageDataBase.dao.impl;
 
 import inspoDataBase.hibernateUsageDataBase.dao.ReminderDao;
-import inspoDataBase.hibernateUsageDataBase.entity.Reminder;
+import inspoDataBase.entity.Reminder;
 import org.hibernate.*;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
