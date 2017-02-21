@@ -43,6 +43,7 @@ public class JpaSpringConfigs {
                 new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+        localContainerEntityManagerFactoryBean.setPackagesToScan("inspoDataBase.jpaUsageDataBase.entity");
         return localContainerEntityManagerFactoryBean;
     }
 
@@ -54,7 +55,6 @@ public class JpaSpringConfigs {
         jpaVendorAdapter.setDatabase(MYSQL);
         jpaVendorAdapter.setShowSql(true);
         jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
-       // jpaVendorAdapter.setPackageToScan("")
         jpaVendorAdapter.setGenerateDdl(false);
         return jpaVendorAdapter;
     }
